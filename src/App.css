@@ -84,9 +84,9 @@
   align-items: flex-start;
 }
 
-.sunrise-info,
-.sunset-info,
-.wind-info {
+.Sunrise-info,
+.Sunset-info,
+.Wind-info {
   padding: 2px 0;
 }
 

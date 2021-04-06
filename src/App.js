@@ -84,9 +84,9 @@ function App() {
       <div className="Container">
         <section>
           {error ? (
-            <div className="error-message">{error}</div>
+            <div className="Error-message">{error}</div>
           ) : loading === true ? (
-            <div className="loading-ico">
+            <div className="Loading-ico">
               <span className="Spinner">
                 <img src={spinner} alt="Spinner icon" />
               </span>
@@ -109,13 +109,13 @@ function App() {
                     <span>{setRoundValue(current.main.temp)}&#8451;</span>
                   </div>
                   <div className="Weather-additional-info">
-                    <span className="wind-info">
+                    <span className="Wind-info">
                       Wind: {current.wind.speed} m/s
                     </span>
-                    <span className="sunrise-info">
+                    <span className="Sunrise-info">
                       Sunrise: {convertTimestampToTime(current.sys.sunrise)}
                     </span>
-                    <span className="sunset-info">
+                    <span className="Sunset-info">
                       Sunset: {convertTimestampToTime(current.sys.sunset)}
                     </span>
                   </div>
