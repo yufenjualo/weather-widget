@@ -21,7 +21,11 @@ export const weatherSlice = createSlice({
     loading: false,
     error: null,
   },
-  reducers: {},
+  reducers: {
+    setError: (state, payload) => {
+      state.error = payload;
+    },
+  },
   extraReducers: {
     [fetchCurrentWeather.pending]: (state, { payload, meta }) => {
       state.loading = true;
@@ -37,6 +41,6 @@ export const weatherSlice = createSlice({
   },
 });
 
-// export const { } = weatherSlice.actions;
+export const { setError } = weatherSlice.actions;
 
 export default weatherSlice.reducer;

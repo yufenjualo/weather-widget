@@ -4,6 +4,7 @@ import moment from "moment";
 import {
   fetchCurrentWeather,
   fetchWeatherForecast,
+  setError,
 } from "./features/weather/weatherSlice";
 import DailyForecastCard from "./components/DailyForecastCard";
 import logo from "./images/dark_logo_weather_app.png";
@@ -36,10 +37,14 @@ function App() {
     return moment.unix(value).format("ddd");
   };
 
+  const showError = (error) => {
+    return <div className="Error-message">{error.payload}</div>;
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (inputCity === "") {
-      alert("Please input keyword");
+      dispatch(setError("Please input keyword"));
     } else {
       new Promise((resolve, reject) => {
         return dispatch(fetchCurrentWeather({ query: inputCity })).then(
@@ -83,10 +88,10 @@ function App() {
 
       <div className="Container">
         <section>
-          {error ? (
-            <div className="error-message">{error}</div>
+          {error !== null ? (
+            showError(error)
           ) : loading === true ? (
-            <div className="loading-ico">
+            <div className="Loading-icon">
               <span className="Spinner">
                 <img src={spinner} alt="Spinner icon" />
               </span>
@@ -109,13 +114,13 @@ function App() {
                     <span>{setRoundValue(current.main.temp)}&#8451;</span>
                   </div>
                   <div className="Weather-additional-info">
-                    <span className="wind-info">
+                    <span className="Wind-info">
                       Wind: {current.wind.speed} m/s
                     </span>
-                    <span className="sunrise-info">
+                    <span className="Sunrise-info">
                       Sunrise: {convertTimestampToTime(current.sys.sunrise)}
                     </span>
-                    <span className="sunset-info">
+                    <span className="Sunset-info">
                       Sunset: {convertTimestampToTime(current.sys.sunset)}
                     </span>
                   </div>

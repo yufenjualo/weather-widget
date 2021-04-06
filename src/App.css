@@ -84,9 +84,9 @@
   align-items: flex-start;
 }
 
-.sunrise-info,
-.sunset-info,
-.wind-info {
+.Sunrise-info,
+.Sunset-info,
+.Wind-info {
   padding: 2px 0;
 }
 
@@ -107,6 +107,13 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+.Error-message {
+  font-size: 1.2rem;
+  padding: 12px;
+  border: 0.2rem solid #ff0000;
+  border-radius: 5px;
 }
 
 @keyframes App-logo-float {
