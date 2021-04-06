@@ -5,6 +5,7 @@ import {
   fetchCurrentWeather,
   fetchWeatherForecast,
 } from "./features/weather/weatherSlice";
+import DailyForecastCard from "./components/DailyForecastCard";
 import logo from "./images/dark_logo_weather_app.png";
 import spinner from "./images/spinner.gif";
 import "./App.css";
@@ -121,16 +122,16 @@ function App() {
                 </div>
                 <div className="Daily-forecast">
                   {forecastData.length > 0 &&
-                    forecastData.slice(0, 5).map((day, idx) => (
-                      <div className="Forecast-card" key={idx}>
-                        <span>{convertTimestampToDayName(day.dt)}</span>
-                        <img
-                          src={imgUrl(day.weather[0].icon, null)}
-                          alt="Daily weather icon"
+                    forecastData
+                      .slice(0, 5)
+                      .map((day, idx) => (
+                        <DailyForecastCard
+                          idx={idx}
+                          displayDayName={convertTimestampToDayName(day.dt)}
+                          imgUrl={imgUrl(day.weather[0].icon, null)}
+                          displayDegree={setRoundValue(day.temp.day)}
                         />
-                        <span>{setRoundValue(day.temp.day)}&#8451;</span>
-                      </div>
-                    ))}
+                      ))}
                 </div>
               </div>
             )
