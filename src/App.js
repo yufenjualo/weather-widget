@@ -20,7 +20,11 @@ function App() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(fetchCurrentWeather({ query: inputCity }));
+    if (inputCity === "") {
+      alert("Please input keyword");
+    } else {
+      dispatch(fetchCurrentWeather({ query: inputCity }));
+    }
   };
 
   return (
