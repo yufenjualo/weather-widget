@@ -4,6 +4,7 @@ import moment from "moment";
 import {
   fetchCurrentWeather,
   fetchWeatherForecast,
+  setError,
 } from "./features/weather/weatherSlice";
 import DailyForecastCard from "./components/DailyForecastCard";
 import logo from "./images/dark_logo_weather_app.png";
@@ -39,7 +40,7 @@ function App() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (inputCity === "") {
-      alert("Please input keyword");
+      dispatch(setError());
     } else {
       new Promise((resolve, reject) => {
         return dispatch(fetchCurrentWeather({ query: inputCity }))
@@ -56,7 +57,7 @@ function App() {
             });
           })
           .catch((err) => {
-            console.log(err);
+            setError(err);
           });
       });
     }
@@ -80,7 +81,7 @@ function App() {
 
       <div className="Container">
         <section>
-          {error ? (
+          {error !== null ? (
             <div className="Error-message">City Not Found</div>
           ) : loading === true ? (
             <div className="Loading-ico">
