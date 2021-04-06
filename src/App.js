@@ -14,8 +14,12 @@ function App() {
   const { current, loading, error } = useSelector((state) => state.weather);
   const dispatch = useDispatch();
 
-  const urlImg = (icon) => {
-    return `http://openweathermap.org/img/wn/${icon}.png`;
+  const imgUrl = (icon, size) => {
+    if (size !== null) {
+      return `http://openweathermap.org/img/wn/${icon}@2x.png`;
+    } else {
+      return `http://openweathermap.org/img/wn/${icon}.png`;
+    }
   };
 
   const setRoundValue = (value) => {
@@ -47,7 +51,6 @@ function App() {
                 lon: lon,
               })
             ).then((res) => {
-              // console.log(res.payload.data.daily);
               setForecastData(res.payload.data.daily);
             });
           }
@@ -81,7 +84,7 @@ function App() {
                 <div className="Weather-icon">
                   <span>
                     <img
-                      src={urlImg(current.weather[0].icon)}
+                      src={imgUrl(current.weather[0].icon, 2)}
                       alt="Current weather icon"
                     />
                   </span>
@@ -91,11 +94,13 @@ function App() {
                   <span>{setRoundValue(current.main.temp)}&#8451;</span>
                 </div>
                 <div className="Weather-additional-info">
-                  <span>Wind: {current.wind.speed} m/s</span>
-                  <span>
+                  <span className="wind-info">
+                    Wind: {current.wind.speed} m/s
+                  </span>
+                  <span className="sunrise-info">
                     Sunrise: {convertTimestampToTime(current.sys.sunrise)}
                   </span>
-                  <span>
+                  <span className="sunset-info">
                     Sunset: {convertTimestampToTime(current.sys.sunset)}
                   </span>
                 </div>
@@ -104,6 +109,10 @@ function App() {
                 {forecastData.slice(0, 5).map((day, idx) => (
                   <div className="Forecast-card" key={idx}>
                     <span>{convertTimestampToDayName(day.dt)}</span>
+                    <img
+                      src={imgUrl(day.weather[0].icon, null)}
+                      alt="Daily weather icon"
+                    />
                     <span>{setRoundValue(day.temp.day)}&#8451;</span>
                   </div>
                 ))}
