@@ -52,7 +52,7 @@
 }
 
 .Weather-result {
-  border: 0.2rem solid #000;
+  border: 0.2rem solid #333;
   border-radius: 5px;
   padding: 20px;
   font-size: 0.8rem;

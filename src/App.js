@@ -5,7 +5,7 @@ import {
   fetchCurrentWeather,
   fetchWeatherForecast,
 } from "./features/weather/weatherSlice";
-import logo from "./images/logo_weather_app.png";
+import logo from "./images/dark_logo_weather_app.png";
 import spinner from "./images/spinner.gif";
 import "./App.css";
 
