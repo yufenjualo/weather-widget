@@ -6,6 +6,7 @@ import {
   fetchWeatherForecast,
 } from "./features/weather/weatherSlice";
 import logo from "./images/logo_weather_app.png";
+import spinner from "./images/spinner.gif";
 import "./App.css";
 
 function App() {
@@ -78,7 +79,11 @@ function App() {
       <div className="Container">
         <section>
           {loading === true ? (
-            <div className="loading-ico">Loading..</div>
+            <div className="loading-ico">
+              <span className="Spinner">
+                <img src={spinner} alt="Spinner icon" />
+              </span>
+            </div>
           ) : (
             <div className="Weather-result">
               <h2>{current.name}</h2>
