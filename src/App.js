@@ -50,7 +50,7 @@ function App() {
                   <h2>{current.weather[0].main}</h2>
                 </div>
                 <div className="Weather-degree-info">
-                  {setRoundValue(current.main.temp)}c
+                  {setRoundValue(current.main.temp)}&#8451;
                 </div>
                 <div className="Weather-additional-info">
                   <span>Wind: {current.wind.speed} m/s</span>
