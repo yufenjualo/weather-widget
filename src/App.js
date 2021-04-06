@@ -23,18 +23,20 @@ function App() {
     return moment.unix(value).format("LT");
   };
 
-  const getForecastData = () => {
-    if (current.cod === 200) {
-      dispatch(fetchWeatherForecast({ lat: lat, lon: lon }));
-    }
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
     if (inputCity === "") {
       alert("Please input keyword");
     } else {
-      dispatch(fetchCurrentWeather({ query: inputCity }));
+      new Promise((resolve, reject) => {
+        return dispatch(fetchCurrentWeather({ query: inputCity })).then(
+          (res) => {
+            setLat(res.payload.data.coord.lat);
+            setLon(res.payload.data.coord.lon);
+            dispatch(fetchWeatherForecast({ lat: lat, lon: lon }));
+          }
+        );
+      });
     }
   };
 
