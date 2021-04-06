@@ -7,7 +7,7 @@ import "./App.css";
 
 function App() {
   const [inputCity, setInputCity] = useState("");
-  const { current, userName } = useSelector((state) => state.weather);
+  const { current } = useSelector((state) => state.weather);
   const dispatch = useDispatch();
 
   const convertTimestamp = (value) => {
