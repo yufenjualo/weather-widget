@@ -67,34 +67,34 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <div className="Search-block">
+        <div className="search-block">
           <form onSubmit={handleSubmit}>
             <input
-              className="Search-bar"
+              className="search-bar"
               onChange={(e) => setInputCity(e.target.value)}
               type="text"
             />
-            <input className="Search-submit" type="submit" value="Search" />
+            <input className="search-submit" type="submit" value="Search" />
           </form>
         </div>
       </header>
 
-      <div className="Container">
+      <div className="container">
         <section>
           {error !== null ? (
-            <div className="Error-message">City Not Found</div>
+            <div className="error-message">City Not Found</div>
           ) : loading === true ? (
-            <div className="Loading-ico">
-              <span className="Spinner">
+            <div className="loading-ico">
+              <span className="spinner">
                 <img src={spinner} alt="Spinner icon" />
               </span>
             </div>
           ) : (
             current && (
-              <div className="Weather-result">
+              <div className="weather-result">
                 <h2>{current.name}</h2>
-                <div className="Current-information">
-                  <div className="Weather-icon">
+                <div className="current-information">
+                  <div className="weather-icon">
                     <span>
                       <img
                         src={imgUrl(current.weather[0].icon, 2)}
@@ -103,22 +103,22 @@ function App() {
                     </span>
                     <h2>{current.weather[0].main}</h2>
                   </div>
-                  <div className="Weather-degree-info">
+                  <div className="weather-degree-info">
                     <span>{setRoundValue(current.main.temp)}&#8451;</span>
                   </div>
-                  <div className="Weather-additional-info">
-                    <span className="Wind-info">
+                  <div className="weather-additional-info">
+                    <span className="wind-info">
                       Wind: {current.wind.speed} m/s
                     </span>
-                    <span className="Sunrise-info">
+                    <span className="sunrise-info">
                       Sunrise: {convertTimestampToTime(current.sys.sunrise)}
                     </span>
-                    <span className="Sunset-info">
+                    <span className="sunset-info">
                       Sunset: {convertTimestampToTime(current.sys.sunset)}
                     </span>
                   </div>
                 </div>
-                <div className="Daily-forecast">
+                <div className="daily-forecast">
                   {forecastData.length > 0 &&
                     forecastData
                       .slice(0, 5)

@@ -1,13 +1,3 @@
-* {
-  margin: 0;
-  padding: 0;
-}
-
-.Container {
-  width: 430px;
-  margin: auto;
-}
-
 .App {
   text-align: center;
 }
@@ -35,85 +25,6 @@
 .App-header img {
   width: 350px;
   height: 150px;
-}
-
-.Search-block {
-  margin-top: 35px;
-}
-
-.Search-block .Search-bar {
-  width: 300px;
-  padding: 7.5px;
-}
-
-.Search-block .Search-submit {
-  padding: 5px;
-  margin-left: 15px;
-}
-
-.Weather-result {
-  border: 0.2rem solid #333;
-  border-radius: 5px;
-  padding: 20px;
-  font-size: 0.8rem;
-}
-
-.Weather-result h2 {
-  font-size: 0.9rem;
-  font-weight: 500;
-}
-
-.Current-information {
-  margin: 10px 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-}
-
-.Current-information .Weather-icon {
-  display: flex;
-  flex-direction: column;
-}
-.Current-information .Weather-degree-info {
-  font-size: 1.7rem;
-  font-weight: 500;
-}
-.Current-information .Weather-additional-info {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.Sunrise-info,
-.Sunset-info,
-.Wind-info {
-  padding: 2px 0;
-}
-
-.Weather-icon h2 {
-  font-size: 0.9rem;
-  font-weight: 500;
-}
-
-.Daily-forecast {
-  margin: 20px 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-}
-
-.Forecast-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.Error-message {
-  font-size: 0.9rem;
-  font-weight: 500;
-  border: 0.2rem solid #333;
-  padding: 10px;
 }
 
 @keyframes App-logo-float {
