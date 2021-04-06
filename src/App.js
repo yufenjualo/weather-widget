@@ -77,7 +77,9 @@ function App() {
 
       <div className="Container">
         <section>
-          {loading === false && current ? (
+          {loading === true ? (
+            <div className="loading-ico">Loading..</div>
+          ) : (
             <div className="Weather-result">
               <h2>{current.name}</h2>
               <div className="Current-information">
@@ -118,8 +120,6 @@ function App() {
                 ))}
               </div>
             </div>
-          ) : (
-            "No Data"
           )}
         </section>
       </div>
