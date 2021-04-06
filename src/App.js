@@ -1,13 +1,18 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import moment from "moment";
-import { fetchCurrentWeather } from "./features/weather/weatherSlice";
+import {
+  fetchCurrentWeather,
+  fetchWeatherForecast,
+} from "./features/weather/weatherSlice";
 import logo from "./images/logo_weather_app.png";
 import "./App.css";
 
 function App() {
   const [inputCity, setInputCity] = useState("");
-  const { current } = useSelector((state) => state.weather);
+  const [lat, setLat] = useState("");
+  const [lon, setLon] = useState("");
+  const { current, loading, error } = useSelector((state) => state.weather);
   const dispatch = useDispatch();
 
   const setRoundValue = (value) => {
@@ -15,7 +20,13 @@ function App() {
   };
 
   const convertTimestamp = (value) => {
-    return moment(value).format("LT");
+    return moment.unix(value).format("LT");
+  };
+
+  const getForecastData = () => {
+    if (current.cod === 200) {
+      dispatch(fetchWeatherForecast({ lat: lat, lon: lon }));
+    }
   };
 
   const handleSubmit = (e) => {
@@ -45,7 +56,7 @@ function App() {
 
       <div className="Container">
         <section>
-          {current && (
+          {loading === false && current ? (
             <div className="Weather-result">
               <h2>Hanoi</h2>
               <div className="Current-information">
@@ -63,6 +74,8 @@ function App() {
                 </div>
               </div>
             </div>
+          ) : (
+            "No Data"
           )}
         </section>
       </div>
