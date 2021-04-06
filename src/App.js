@@ -10,15 +10,24 @@ import "./App.css";
 
 function App() {
   const [inputCity, setInputCity] = useState("");
+  const [forecastData, setForecastData] = useState([]);
   const { current, loading, error } = useSelector((state) => state.weather);
   const dispatch = useDispatch();
+
+  const urlImg = (icon) => {
+    return `http://openweathermap.org/img/wn/${icon}.png`;
+  };
 
   const setRoundValue = (value) => {
     return Math.floor(parseFloat(value));
   };
 
-  const convertTimestamp = (value) => {
+  const convertTimestampToTime = (value) => {
     return moment.unix(value).format("LT");
+  };
+
+  const convertTimestampToDayName = (value) => {
+    return moment.unix(value).format("ddd");
   };
 
   const handleSubmit = (e) => {
@@ -37,7 +46,10 @@ function App() {
                 lat: lat,
                 lon: lon,
               })
-            );
+            ).then((res) => {
+              // console.log(res.payload.data.daily);
+              setForecastData(res.payload.data.daily);
+            });
           }
         );
       });
@@ -64,20 +76,37 @@ function App() {
         <section>
           {loading === false && current ? (
             <div className="Weather-result">
-              <h2>Hanoi</h2>
+              <h2>{current.name}</h2>
               <div className="Current-information">
                 <div className="Weather-icon">
-                  <span>Weather logo</span>
+                  <span>
+                    <img
+                      src={urlImg(current.weather[0].icon)}
+                      alt="Current weather icon"
+                    />
+                  </span>
                   <h2>{current.weather[0].main}</h2>
                 </div>
                 <div className="Weather-degree-info">
-                  {setRoundValue(current.main.temp)}&#8451;
+                  <span>{setRoundValue(current.main.temp)}&#8451;</span>
                 </div>
                 <div className="Weather-additional-info">
                   <span>Wind: {current.wind.speed} m/s</span>
-                  <span>Sunrise: {convertTimestamp(current.sys.sunrise)}</span>
-                  <span>Sunset: {convertTimestamp(current.sys.sunset)}</span>
+                  <span>
+                    Sunrise: {convertTimestampToTime(current.sys.sunrise)}
+                  </span>
+                  <span>
+                    Sunset: {convertTimestampToTime(current.sys.sunset)}
+                  </span>
                 </div>
+              </div>
+              <div className="Daily-forecast">
+                {forecastData.slice(0, 5).map((day, idx) => (
+                  <div className="Forecast-card" key={idx}>
+                    <span>{convertTimestampToDayName(day.dt)}</span>
+                    <span>{setRoundValue(day.temp.day)}&#8451;</span>
+                  </div>
+                ))}
               </div>
             </div>
           ) : (
