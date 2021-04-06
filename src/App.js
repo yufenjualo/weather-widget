@@ -124,7 +124,7 @@ function App() {
                       .slice(0, 5)
                       .map((day, idx) => (
                         <DailyForecastCard
-                          idx={idx}
+                          key={idx}
                           displayDayName={convertTimestampToDayName(day.dt)}
                           imgUrl={imgUrl(day.weather[0].icon, null)}
                           displayDegree={setRoundValue(day.temp.day)}
