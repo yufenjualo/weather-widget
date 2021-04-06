@@ -44,23 +44,20 @@ function App() {
       new Promise((resolve, reject) => {
         return dispatch(fetchCurrentWeather({ query: inputCity }))
           .then((res) => {
-            if (res) {
-              let lat = res.payload.data.coord.lat;
-              let lon = res.payload.data.coord.lon;
-
-              dispatch(
-                fetchWeatherForecast({
-                  lat: lat,
-                  lon: lon,
-                })
-              ).then((res) => {
-                if (res) {
-                  setForecastData(res.payload.data.daily);
-                }
-              });
-            }
+            let lat = res.payload.data.coord.lat;
+            let lon = res.payload.data.coord.lon;
+            return dispatch(
+              fetchWeatherForecast({
+                lat: lat,
+                lon: lon,
+              })
+            ).then((res) => {
+              setForecastData(res.payload.data.daily);
+            });
           })
-          .catch(alert);
+          .catch((err) => {
+            console.log(err);
+          });
       });
     }
   };
@@ -84,7 +81,7 @@ function App() {
       <div className="Container">
         <section>
           {error ? (
-            <div className="Error-message">{error}</div>
+            <div className="Error-message">City Not Found</div>
           ) : loading === true ? (
             <div className="Loading-ico">
               <span className="Spinner">

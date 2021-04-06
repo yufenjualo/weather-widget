@@ -109,6 +109,13 @@
   justify-content: center;
 }
 
+.Error-message {
+  font-size: 0.9rem;
+  font-weight: 500;
+  border: 0.2rem solid #333;
+  padding: 10px;
+}
+
 @keyframes App-logo-float {
   0% {
     transform: translateY(0);

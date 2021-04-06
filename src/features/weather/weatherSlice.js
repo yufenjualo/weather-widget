@@ -29,6 +29,7 @@ export const weatherSlice = createSlice({
     [fetchCurrentWeather.fulfilled]: (state, { payload, meta }) => {
       state.loading = false;
       state.current = payload.data;
+      state.error = null;
     },
     [fetchCurrentWeather.rejected]: (state, { error, meta }) => {
       state.loading = false;
