@@ -66,7 +66,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+        <img src={logo} className="App-logo" alt="Logo" />
         <div className="search-block">
           <form onSubmit={handleSubmit}>
             <input
@@ -94,7 +94,7 @@ function App() {
               <div className="weather-result">
                 <h2>{current.name}</h2>
                 <div className="current-information">
-                  <div className="weather-icon">
+                  <div className="weather-icon-container">
                     <span>
                       <img
                         src={imgUrl(current.weather[0].icon, 2)}

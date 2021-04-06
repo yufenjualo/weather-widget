@@ -60,9 +60,10 @@ ul {
   justify-content: space-around;
 }
 
-.current-information .weather-icon {
+.current-information .weather-icon-container {
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 .current-information .weather-degree-info {
   font-size: 1.7rem;
@@ -80,13 +81,16 @@ ul {
   padding: 2px 0;
 }
 
-.weather-icon h2 {
+.weather-icon-container h2 {
+  position: absolute;
+  top: 80px;
+  left: 30px;
   font-size: 0.9rem;
   font-weight: 500;
 }
 
 .daily-forecast {
-  margin: 20px 0;
+  margin: 25px 0 10px;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
