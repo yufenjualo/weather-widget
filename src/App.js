@@ -1,10 +1,7 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import moment from "moment";
-import {
-  fetchCurrentWeather,
-  changeUserName,
-} from "./features/weather/weatherSlice";
+import { fetchCurrentWeather } from "./features/weather/weatherSlice";
 import logo from "./images/logo_weather_app.png";
 import "./App.css";
 
@@ -19,10 +16,7 @@ function App() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(changeUserName());
-    const getData = dispatch(fetchCurrentWeather({ query: inputCity }));
-
-    console.log(getData);
+    dispatch(fetchCurrentWeather({ query: inputCity }));
   };
 
   return (
@@ -43,7 +37,7 @@ function App() {
 
       <div className="Container">
         <section>
-          {current ? (
+          {current && (
             <div className="Weather-result">
               <h2>Hanoi</h2>
               <div className="Current-information">
@@ -59,10 +53,7 @@ function App() {
                 </div>
               </div>
             </div>
-          ) : (
-            <div className="Weather-result">City Not Found</div>
           )}
-          {/* {userName && <div className="Weather-result">{userName}</div>} */}
         </section>
       </div>
     </div>

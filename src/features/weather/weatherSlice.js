@@ -20,13 +20,8 @@ export const weatherSlice = createSlice({
     current: null,
     loading: true,
     error: null,
-    userName: null,
   },
-  reducers: {
-    changeUserName: (state) => {
-      state.userName = "Yufen";
-    },
-  },
+  reducers: {},
   extraReducers: {
     [fetchCurrentWeather.pending]: (state, { payload, meta }) => {
       state.loading = true;
@@ -42,6 +37,6 @@ export const weatherSlice = createSlice({
   },
 });
 
-export const { changeUserName } = weatherSlice.actions; //for test purpose to check if it's working or not
+// export const { } = weatherSlice.actions;
 
 export default weatherSlice.reducer;
