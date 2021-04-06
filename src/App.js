@@ -10,6 +10,10 @@ function App() {
   const { current } = useSelector((state) => state.weather);
   const dispatch = useDispatch();
 
+  const setRoundValue = (value) => {
+    return Math.floor(parseFloat(value));
+  };
+
   const convertTimestamp = (value) => {
     return moment(value).format("LT");
   };
@@ -45,7 +49,9 @@ function App() {
                   <span>Broken Clouds logo</span>
                   <h2>Broken Clouds</h2>
                 </div>
-                <div className="Weather-degree-info">{current.main.temp}c</div>
+                <div className="Weather-degree-info">
+                  {setRoundValue(current.main.temp)}c
+                </div>
                 <div className="Weather-additional-info">
                   <span>Wind: {current.wind.speed} m/s</span>
                   <span>Sunrise: {convertTimestamp(current.sys.sunrise)}</span>
