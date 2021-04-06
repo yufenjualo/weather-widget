@@ -10,8 +10,6 @@ import "./App.css";
 
 function App() {
   const [inputCity, setInputCity] = useState("");
-  const [lat, setLat] = useState("");
-  const [lon, setLon] = useState("");
   const { current, loading, error } = useSelector((state) => state.weather);
   const dispatch = useDispatch();
 
@@ -31,9 +29,15 @@ function App() {
       new Promise((resolve, reject) => {
         return dispatch(fetchCurrentWeather({ query: inputCity })).then(
           (res) => {
-            setLat(res.payload.data.coord.lat);
-            setLon(res.payload.data.coord.lon);
-            dispatch(fetchWeatherForecast({ lat: lat, lon: lon }));
+            let lat = res.payload.data.coord.lat;
+            let lon = res.payload.data.coord.lon;
+
+            dispatch(
+              fetchWeatherForecast({
+                lat: lat,
+                lon: lon,
+              })
+            );
           }
         );
       });
