@@ -42,8 +42,8 @@ function App() {
       alert("Please input keyword");
     } else {
       new Promise((resolve, reject) => {
-        return dispatch(fetchCurrentWeather({ query: inputCity })).then(
-          (res) => {
+        return dispatch(fetchCurrentWeather({ query: inputCity }))
+          .then((res) => {
             if (res) {
               let lat = res.payload.data.coord.lat;
               let lon = res.payload.data.coord.lon;
@@ -59,8 +59,8 @@ function App() {
                 }
               });
             }
-          }
-        );
+          })
+          .catch(alert);
       });
     }
   };
