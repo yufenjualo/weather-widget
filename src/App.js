@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import moment from "moment";
 import {
   fetchCurrentWeather,
   changeUserName,
@@ -11,6 +12,10 @@ function App() {
   const [inputCity, setInputCity] = useState("");
   const { current, userName } = useSelector((state) => state.weather);
   const dispatch = useDispatch();
+
+  const convertTimestamp = (value) => {
+    return moment(value).format("LT");
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -38,9 +43,26 @@ function App() {
 
       <div className="Container">
         <section>
-          <div className="Weather-result">City Not Found</div>
+          {current ? (
+            <div className="Weather-result">
+              <h2>Hanoi</h2>
+              <div className="Current-information">
+                <div className="Weather-icon">
+                  <span>Broken Clouds logo</span>
+                  <h2>Broken Clouds</h2>
+                </div>
+                <div className="Weather-degree-info">{current.main.temp}c</div>
+                <div className="Weather-additional-info">
+                  <span>Wind: {current.wind.speed} m/s</span>
+                  <span>Sunrise: {convertTimestamp(current.sys.sunrise)}</span>
+                  <span>Sunset: {convertTimestamp(current.sys.sunset)}</span>
+                </div>
+              </div>
+            </div>
+          ) : (
+            <div className="Weather-result">City Not Found</div>
+          )}
           {/* {userName && <div className="Weather-result">{userName}</div>} */}
-          {/* <div className="test">{inputCity}</div> */}
         </section>
       </div>
     </div>
