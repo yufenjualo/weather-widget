@@ -18,7 +18,7 @@ export const weatherSlice = createSlice({
   name: sliceName,
   initialState: {
     current: null,
-    loading: true,
+    loading: false,
     error: null,
   },
   reducers: {},
