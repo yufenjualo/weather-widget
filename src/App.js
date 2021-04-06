@@ -46,8 +46,8 @@ function App() {
               <h2>Hanoi</h2>
               <div className="Current-information">
                 <div className="Weather-icon">
-                  <span>Broken Clouds logo</span>
-                  <h2>Broken Clouds</h2>
+                  <span>Weather logo</span>
+                  <h2>{current.weather[0].main}</h2>
                 </div>
                 <div className="Weather-degree-info">
                   {setRoundValue(current.main.temp)}c
