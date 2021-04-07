@@ -27,24 +27,22 @@ function App() {
     if (inputCity === "") {
       dispatch(setError());
     } else {
-      new Promise((resolve, reject) => {
-        return dispatch(fetchCurrentWeather({ query: inputCity }))
-          .then((res) => {
-            let lat = res.payload.data.coord.lat;
-            let lon = res.payload.data.coord.lon;
-            return dispatch(
-              fetchWeatherForecast({
-                lat: lat,
-                lon: lon,
-              })
-            ).then((res) => {
-              setForecastData(res.payload.data.daily);
-            });
-          })
-          .catch((err) => {
-            setError(err);
+      return dispatch(fetchCurrentWeather({ query: inputCity }))
+        .then((res) => {
+          let lat = res.payload.data.coord.lat;
+          let lon = res.payload.data.coord.lon;
+          return dispatch(
+            fetchWeatherForecast({
+              lat: lat,
+              lon: lon,
+            })
+          ).then((res) => {
+            setForecastData(res.payload.data.daily);
           });
-      });
+        })
+        .catch((err) => {
+          setError(err);
+        });
     }
   };
 
@@ -55,6 +53,7 @@ function App() {
         <div className="search-block">
           <form onSubmit={handleSubmit}>
             <input
+              title="testSearchBar"
               className="search-bar"
               onChange={(e) => setInputCity(e.target.value)}
               type="text"

@@ -103,6 +103,11 @@ ul {
   justify-content: center;
 }
 
+.forecast-card h3 {
+  text-transform: uppercase;
+  font-size: 0.8rem;
+}
+
 .error-message {
   padding: 10px;
   font-size: 0.8rem;
