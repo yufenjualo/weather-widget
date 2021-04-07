@@ -1,11 +1,16 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import moment from "moment";
 import {
   fetchCurrentWeather,
   fetchWeatherForecast,
   setError,
 } from "./features/weather/weatherSlice";
+import {
+  setRoundedValue,
+  convertTimestampToTime,
+  convertTimestampToDayName,
+  imgWeatherIconUrl,
+} from "./helpers/HelperFunction";
 import DailyForecastCard from "./components/DailyForecastCard/DailyForecastCard";
 import logo from "./images/dark_logo_weather_app.png";
 import spinner from "./images/spinner.gif";
@@ -16,26 +21,6 @@ function App() {
   const [forecastData, setForecastData] = useState([]);
   const { current, loading, error } = useSelector((state) => state.weather);
   const dispatch = useDispatch();
-
-  const imgUrl = (icon, size) => {
-    if (size !== null) {
-      return `http://openweathermap.org/img/wn/${icon}@2x.png`;
-    } else {
-      return `http://openweathermap.org/img/wn/${icon}.png`;
-    }
-  };
-
-  const setRoundValue = (value) => {
-    return Math.floor(parseFloat(value));
-  };
-
-  const convertTimestampToTime = (value) => {
-    return moment.unix(value).format("LT");
-  };
-
-  const convertTimestampToDayName = (value) => {
-    return moment.unix(value).format("ddd");
-  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -97,14 +82,14 @@ function App() {
                   <div className="weather-icon-container">
                     <span>
                       <img
-                        src={imgUrl(current.weather[0].icon, 2)}
+                        src={imgWeatherIconUrl(current.weather[0].icon, 2)}
                         alt="Current weather icon"
                       />
                     </span>
                     <h2>{current.weather[0].main}</h2>
                   </div>
                   <div className="weather-degree-info">
-                    <span>{setRoundValue(current.main.temp)}&#8451;</span>
+                    <span>{setRoundedValue(current.main.temp)}&#8451;</span>
                   </div>
                   <div className="weather-additional-info">
                     <span className="wind-info">
@@ -126,8 +111,11 @@ function App() {
                         <DailyForecastCard
                           key={idx}
                           displayDayName={convertTimestampToDayName(day.dt)}
-                          imgUrl={imgUrl(day.weather[0].icon, null)}
-                          displayDegree={setRoundValue(day.temp.day)}
+                          imgWeatherIconUrl={imgWeatherIconUrl(
+                            day.weather[0].icon,
+                            null
+                          )}
+                          displayDegree={setRoundedValue(day.temp.day)}
                         />
                       ))}
                 </div>
