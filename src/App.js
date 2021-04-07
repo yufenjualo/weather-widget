@@ -6,7 +6,7 @@ import {
   fetchWeatherForecast,
   setError,
 } from "./features/weather/weatherSlice";
-import DailyForecastCard from "./components/DailyForecastCard";
+import DailyForecastCard from "./components/DailyForecastCard/DailyForecastCard";
 import logo from "./images/dark_logo_weather_app.png";
 import spinner from "./images/spinner.gif";
 import "./App.css";
